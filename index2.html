@@ -1,1 +1,76 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Juancho056.GitHub.io by juancho056</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-dark.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/juancho056">View On GitHub</a></li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Juancho056.GitHub.io</h1>
+          <p></p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/juancho056">juancho056</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h3>
+<a id="hackthiscouk---real-level-xmas-" class="anchor" href="#hackthiscouk---real-level-xmas-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>"Hackthis.co.uk - Real Level Xmas "</h3>
+
+<p>I heard you were good with computers, so I was wondering if you could help me out.</p>
+
+<p>I have come across a website that claims to make children's dreams come true, and i've done a little research and found out its just a scam. The idea is that you submit your letter to Santa. The top three letters will then win everything on there list. But in fact the ranking is fixed and there is no way to win.</p>
+
+<p>Can you please somehow change their homepage to the one supplied?</p>
+
+<blockquote>
+<p>Básicamente lo que nos dice el enunciado es que la pagina es una estafa y lo que quieren es que una vez ingrese cualquier otra persona a dicha pagina, lo primero que muestre sea una advertencia para que no participen en la misma.</p>
+</blockquote>
+
+<p>En la pagina se dan dos Links:</p>
+
+<ul>
+<li>Alternative Homepage </li>
+<li>Christmas Wishes </li>
+</ul>
+
+<p>Se describen los pasos para superar el reto a continuación:</p>
+
+<ol>
+<li><p>Se ingresa a el Link: <em>Christmas Wishes</em> </p></li>
+<li><p>En la pagina se observan en la parte superior 3 menus (<strong>About Santa, Write to Santa, Top Letters</strong>), se se ingresa a cada uno de ellos fácilmente se detecta que dos de ellos son estáticos y solo muestran datos mas no tienen interacción con el servidor pero el segundo menú <em><strong>Write to Santa</strong></em> es para enviar la carta a Santa para participar en el concurso, nos puede servir.</p></li>
+<li><p>Sin copiar nada se presiona el boton send y la URL varia:
+<a href="https://www.hackthis.co.uk/levels/extras/real/xmas/submit.php">https://www.hackthis.co.uk/levels/extras/real/xmas/submit.php</a> a <a href="https://www.hackthis.co.uk/levels/extras/real/xmas/mod.php?submit">https://www.hackthis.co.uk/levels/extras/real/xmas/mod.php?submit</a>
+se borra el Submit en la última URL y se nos direcciona a un login.</p></li>
+<li><p>Estando ya en el login como no se encuentran evidencias de usuario o contraseña en el código fuente o en la pagina principal se intendenta ingresar con SQLi Injection en Usuario y Password por lo que se escribe la sentencia <strong>'Or 1=1 --';</strong>. El ingreso es Exitoso y la pagina es un path donde se puede abrir un archivo y modificar el contenido para guardarlo de nuevo.</p></li>
+<li><p>El planteamiento inicial del problema nos pide que para el próximo ingreso se muestre un index o inicio que indique que el sitio es una farsa, para esto se ingresa a el primer link dado en el enunciado: <em>Alternative Homepage</em>, se inspecciona y copia el código fuente de la pagina propuesta. </p></li>
+<li>Luego en la pagina con la que se ingreso con SQLi Injection se abre el archivo Index.php que corresponde a la pagina de entrada de la pagina de estafa y se borra el contenido de su configuración y se pega el codigo HTML de la pagina propuesta de advertencia, guardar y esta echo.</li>
+</ol>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
