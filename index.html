@@ -35,37 +35,20 @@
           <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
         </div>
 
-        <h3>
-<a id="hackthiscouk---real-level-xmas-" class="anchor" href="#hackthiscouk---real-level-xmas-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>"Hackthis.co.uk - Real Level Xmas "</h3>
+        <h2>
+<a id="hackthiscouk--sqli-injesion-avanzado" class="anchor" href="#hackthiscouk--sqli-injesion-avanzado" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Hackthis.co.uk- SQLi Injesion Avanzado</h2>
 
-<p>I heard you were good with computers, so I was wondering if you could help me out.</p>
-
-<p>I have come across a website that claims to make children's dreams come true, and i've done a little research and found out its just a scam. The idea is that you submit your letter to Santa. The top three letters will then win everything on there list. But in fact the ranking is fixed and there is no way to win.</p>
-
-<p>Can you please somehow change their homepage to the one supplied?</p>
+<p>Gain access to an administrators account</p>
 
 <blockquote>
-<p>Básicamente lo que nos dice el enunciado es que la pagina es una estafa y lo que quieren es que una vez ingrese cualquier otra persona a dicha pagina, lo primero que muestre sea una advertencia para que no participen en la misma.</p>
+<p>Se de debe ingresar con una cuenta de Administrador</p>
 </blockquote>
 
-<p>En la pagina se dan dos Links:</p>
-
-<ul>
-<li>Alternative Homepage </li>
-<li>Christmas Wishes </li>
-</ul>
-
-<p>Se describen los pasos para superar el reto a continuación:</p>
+<p>Pasos para abordar la solución al reto.
+1. Lo primero que se observa en el reto son los campos Username, Password y el Boton <strong>Browse Members</strong>, le damos clic a dicho botón.</p>
 
 <ol>
-<li><p>Se ingresa a el Link: <em>Christmas Wishes</em> </p></li>
-<li><p>En la pagina se observan en la parte superior 3 menus (<strong>About Santa, Write to Santa, Top Letters</strong>), se se ingresa a cada uno de ellos fácilmente se detecta que dos de ellos son estáticos y solo muestran datos mas no tienen interacción con el servidor pero el segundo menú <em><strong>Write to Santa</strong></em> es para enviar la carta a Santa para participar en el concurso, nos puede servir.</p></li>
-<li><p>Sin copiar nada se presiona el boton send y la URL varia:
-<a href="https://www.hackthis.co.uk/levels/extras/real/xmas/submit.php">https://www.hackthis.co.uk/levels/extras/real/xmas/submit.php</a> a <a href="https://www.hackthis.co.uk/levels/extras/real/xmas/mod.php?submit">https://www.hackthis.co.uk/levels/extras/real/xmas/mod.php?submit</a>
-se borra el Submit en la última URL y se nos direcciona a un login.</p></li>
-<li><p>Estando ya en el login como no se encuentran evidencias de usuario o contraseña en el código fuente o en la pagina principal se intendenta ingresar con SQLi Injection en Usuario y Password por lo que se escribe la sentencia <strong>'Or 1=1 --';</strong>. El ingreso es Exitoso y la pagina es un path donde se puede abrir un archivo y modificar el contenido para guardarlo de nuevo.</p></li>
-<li><p>El planteamiento inicial del problema nos pide que para el próximo ingreso se muestre un index o inicio que indique que el sitio es una farsa, para esto se ingresa a el primer link dado en el enunciado: <em>Alternative Homepage</em>, se inspecciona y copia el código fuente de la pagina propuesta. </p></li>
-<li>Luego en la pagina con la que se ingreso con SQLi Injection se abre el archivo Index.php que corresponde a la pagina de entrada de la pagina de estafa y se borra el contenido de su configuración y se pega el codigo HTML de la pagina propuesta de advertencia, guardar y esta echo.</li>
+<li>Se nos disecciona a una libreta de nombres ordenada alfabéticamente de la a - z, por lo cual al selecciona cualquier letra se nos muestran los nombres de los usuarios que comienzan con dicha letra y la URL es la siguiente</li>
 </ol>
       </section>
 
