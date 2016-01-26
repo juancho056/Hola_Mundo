@@ -36,38 +36,16 @@
         </div>
 
         <h2>
-<a id="hackthiscouk--sqli-injection-avanzado" class="anchor" href="#hackthiscouk--sqli-injection-avanzado" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Hackthis.co.uk- SQLi Injection Avanzado</h2>
+<a id="canyouhackit---steganography-challenge-2" class="anchor" href="#canyouhackit---steganography-challenge-2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Canyouhack.it - Steganography Challenge 2</h2>
 
-<p><strong>Enunciado</strong>
-Gain access to an administrators account</p>
+<p><img src="http://canyouhack.it/Content/Challenges/Stego/stego2.jpg" alt=""></p>
 
-<blockquote>
-<p>Se de debe ingresar con una cuenta de Administrador</p>
-</blockquote>
-
-<p>Pasos para abordar la solución al reto.
-1. Lo primero que se observa en el reto son los campos Username, Password y el Boton <strong>Browse Members</strong>, le damos clic a dicho botón.</p>
+<p>Pasos para resolver el reto:</p>
 
 <ol>
-<li><p>Se nos direcciona a una libreta de nombres ordenada alfabéticamente de la a - z, por lo cual al selecciona cualquier letra se nos muestran los nombres de los usuarios que comienzan con dicha letra y la URL se visualiza de la siguiente manera <a href="https://www.hackthis.co.uk/levels/sqli/2?browse&amp;q=a">https://www.hackthis.co.uk/levels/sqli/2?browse&amp;q=a</a>.</p></li>
-<li><p>Al final de la URL copiamos un apostofe ('), para verificar si la pagina es vulnerable a Injection SQLI, mostrando el siguiente mensaje en la pagina  <strong><code>[DEBUG: SELECT username, admin FROM members WHERE username LIKE 'a'%']</code></strong> lo que significa que se nos esta dando una pista para emplear el SQLi.</p></li>
-<li><p>Se realiza SQLI Injection modificando la URL de la siguiente manera: </p></li>
-<li><p><a href="https://www.hackthis.co.uk/levels/sqli/2?browse&amp;q=a%27+UNION+SELECT+username,admin+FROM+members%20--">https://www.hackthis.co.uk/levels/sqli/2?browse&amp;q=a%27+UNION+SELECT+username,admin+FROM+members%20--</a>
-Como al ingresar esta dirección no se genera ningún error y tampoco realizo ninguna acción, es indicativo que se esta en el camino correcto pero no se esta preguntando por el dato que queremos específicamente, por lo que no retorna nada.</p></li>
-<li><p>El enunciado nos indica que debemos loguearnos como uno de los usuarios por lo que a la intrucciopn SQLI injection realizada en el paso 4 hace falta concatenarle los siguinetes datos (Todo igual  solo cambia SELECT+admin+as+), que preguntan por el admin en la tabla de usuarios:</p></li>
-<li><p><a href="https://www.hackthis.co.uk/levels/sqli/2?browse&amp;q=a%27+UNION+SELECT+admin+as+username,admin+FROM+members%20--">https://www.hackthis.co.uk/levels/sqli/2?browse&amp;q=a%27+UNION+SELECT+admin+as+username,admin+FROM+members%20--</a>
-Mostrando como resultado los valores 0 y 1 que corresponden a la posición de los administradores de en la tabla.</p></li>
-<li><p>Ya sabiendo la posición de uno de los admin en la tabla, se realiza SQLi Injection como se nos fue sugerido como un mensaje de advertencia en la pagina cunado relizamos el paso 3, quedaando asi la URL:</p></li>
-<li><p>:<a href="https://www.hackthis.co.uk/levels/sqli/2?browse&amp;q=a%27+UNION+SELECT+username,admin+FROM+members+WHERE+admin=1%20--">https://www.hackthis.co.uk/levels/sqli/2?browse&amp;q=a%27+UNION+SELECT+username,admin+FROM+members+WHERE+admin=1%20--</a> 
-En la pagina se muestra el Username: <em><strong>bellamond</strong></em></p></li>
-<li><p>Para hallar la contarseña se modifica la URL en el paso 6, cambiando <strong>username</strong> por <strong>password</strong>, y el resultado es el siguiente: </p></li>
-<li><p>1b774bc166f3f8918e900fcef8752817bae76a37
-Contando los caracteres son 40 lo que posiblemente signifique que sea codificación SHA-1
-<em>Password decodoficado en Sha-1: *</em>sup3r**</p></li>
-<li><p>Se ingresan Username: bellamon ; Password:sup3r</p></li>
+<li><p>Se abre la imagen con un editor Hexadecimal peo no se encuentra nada sobresaliente que muestre indicios del password.</p></li>
+<li><p>Se emplea el programa Stegsolve.jar que permite realizar varios tipos de análisis a las imágenes y su primera función con los botones <strong>[&lt;][&gt;]</strong> realiza un bit mask a la imagen automáticamente (degrada o manipula la imagen) y claramente se ve la respuesta *<em>grey *</em>.</p></li>
 </ol>
-
-<p>Reto superado</p>
       </section>
 
     </div>
